@@ -41,8 +41,8 @@ body {
   flex-direction: row;
   justify-content: center;
   margin-top: 20px;
-  margin-left: 200px;
-  margin-right: 200px;
+  margin-left: 350px;
+  margin-right: 350px;
 }
 
 #todo-input {
@@ -54,6 +54,10 @@ body {
   margin-right: 10px;
 }
 
+button{
+  transition: background-color 0.3s;
+}
+
 button[type='submit'] {
   padding: 8px 16px;
   background-color: #008cba;
@@ -62,6 +66,10 @@ button[type='submit'] {
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
+}
+
+button[type='submit']:hover{
+  background-color: #80c1d9
 }
 
 .lists-container {
@@ -94,7 +102,7 @@ button[type='submit'] {
 
 li {
   list-style: none;
-  background-color:rgb(210, 211, 203);
+  background-color:rgba(181, 185, 163, 0.341);
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 4px;
@@ -124,10 +132,22 @@ li button svg {
 .edit-btn {
   background-color: #008cba
 }
+.edit-btn:hover{
+  background-color: #80c1d9
+}
 
 .delete-btn {
   background-color:#c94c4c
 }
+
+.delete-btn:hover{
+  background-color: #d37b7b
+}
+
 .move-btn{
   background-color: #4caf50;
+}
+
+.move-btn:hover{
+  background-color: #a0e5a2;
 }

@@ -40,22 +40,31 @@ const Controller = (() => {
     });
 
     moveBtn.addEventListener('click', () => {
-      if (listItem.parentNode === pendingList) {
-        completedList.appendChild(listItem);
-        todo.completed = true;
-      } else {
-        pendingList.appendChild(listItem);
-        todo.completed = false;
-      }
-      const arrowIconPath = todo.completed
-        ? 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z'
-        : 'm12 4-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z';
-      moveBtn.innerHTML = `
-          <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" aria-label="Move">
-            <path d="${arrowIconPath}"></path>
-          </svg>`;
-    });
-  };
+        if (listItem.parentNode === pendingList) {
+          completedList.appendChild(listItem);
+          todo.completed = true;
+          editBtn.style.display = 'none'; // Hide the edit button in the completed list
+      
+          // Move the moveBtn to the beginning of the listItem (most left)
+          listItem.removeChild(moveBtn);
+          listItem.insertBefore(moveBtn, listItem.firstChild);
+        } else {
+          pendingList.appendChild(listItem);
+          todo.completed = false;
+          editBtn.style.display = ''; // Show the edit button in the pending list
+      
+          // Move the moveBtn to the end of the listItem (most right)
+          listItem.removeChild(moveBtn);
+          listItem.appendChild(moveBtn);
+        }
+        const arrowIconPath = todo.completed
+          ? 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z'
+          : 'm12 4-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z';
+        moveBtn.innerHTML = `
+            <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" aria-label="Move">
+              <path d="${arrowIconPath}"></path>
+            </svg>`;
+      });
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
